@@ -1,4 +1,4 @@
-/* CREATION DE LA STRUCTURE */
+﻿/* CREATION DE LA STRUCTURE */
 
 CREATE TABLE m5f_categorie
 (
@@ -14,7 +14,9 @@ CREATE TABLE m5f_document
 	description TEXT NOT NULL,
 	validee BIT NOT NULL,
 	exemple TEXT NOT NULL,
-	idSousCat INTEGER NOT NULL
+	idSousCat INTEGER NOT NULL,
+	idReference VARCHAR(32) NOT NULL,
+	lienTelechargement VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE m5f_message
@@ -47,7 +49,9 @@ CREATE TABLE m5f_tmp
   dateTmp DATE NOT NULL,
   valideeTmp BIT NOT NULL,
   exempleTmp TEXT NOT NULL,
-  idSousCat INTEGER NOT NULL
+  idSousCat INTEGER NOT NULL,
+  idReferenceTmp VARCHAR(32) NOT NULL,
+  lienTelechargementTmp VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE m5f_sous_categorie
