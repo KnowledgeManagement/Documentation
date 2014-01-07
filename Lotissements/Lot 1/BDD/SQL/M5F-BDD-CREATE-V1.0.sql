@@ -1,4 +1,4 @@
-/* CREATION DE LA STRUCTURE */
+﻿/* CREATION DE LA STRUCTURE */
 
 CREATE TABLE m5f_categorie
 (
@@ -8,25 +8,14 @@ CREATE TABLE m5f_categorie
 
 CREATE TABLE m5f_document 
 (
-	idDoc INTEGER NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	idReference VARCHAR(32) NOT NULL PRIMARY KEY,
 	intituleDoc VARCHAR(255) NOT NULL,
 	date DATE NOT NULL,
 	description TEXT NOT NULL,
 	validee BIT NOT NULL,
 	exemple TEXT NOT NULL,
-	idSousCat INTEGER NOT NULL
-);
-
-CREATE TABLE m5f_message
-(
-  idMessage INTEGER NOT NULL IDENTITY(1,1) PRIMARY KEY,
-  intitule VARCHAR(70) NOT NULL,
-  contenu TEXT NOT NULL,
-  date DATETIME NOT NULL,
-  etat VARCHAR(32) NOT NULL,
-  commentaires TEXT NOT NULL,
-  idUser INTEGER NOT NULL,
-  idSousCat INTEGER NOT NULL
+	idSousCat INTEGER NOT NULL,
+	lienTelechargement VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE m5f_contact
@@ -41,13 +30,16 @@ CREATE TABLE m5f_contact
 
 CREATE TABLE m5f_tmp
 (
-  idTmp INTEGER NOT NULL IDENTITY(1,1) PRIMARY KEY,
+  idReferenceTmp VARCHAR(32) NOT NULL PRIMARY KEY,
   intituleTmp VARCHAR(255) NOT NULL,
   descriptionTmp TEXT NOT NULL,
   dateTmp DATE NOT NULL,
-  valideeTmp BIT NOT NULL,
+  etatTmp BIT NOT NULL,
   exempleTmp TEXT NOT NULL,
-  idSousCat INTEGER NOT NULL
+  commentaireTmp TEXT NOT NULL,
+  lienTelechargementTmp VARCHAR(255) NOT NULL,
+  idSousCat INTEGER NOT NULL,
+  idUser INTEGER NOT NULL,
 );
 
 CREATE TABLE m5f_sous_categorie
@@ -73,21 +65,20 @@ CREATE TABLE m5f_user (
 ALTER TABLE m5f_document 
 ADD FOREIGN KEY (idSousCat) REFERENCES m5f_sous_categorie (idSousCat);
 
-ALTER TABLE m5f_message 
-ADD FOREIGN KEY (idSousCat) REFERENCES m5f_sous_categorie (idSousCat);
-
-ALTER TABLE m5f_message
+ALTER TABLE m5f_contact 
 ADD FOREIGN KEY (idUser) REFERENCES m5f_user (idUser);
 
-ALTER TABLE m5f_contact 
+ALTER TABLE m5f_tmp
 ADD FOREIGN KEY (idUser) REFERENCES m5f_user (idUser);
 
 ALTER TABLE m5f_tmp
 ADD FOREIGN KEY (idSousCat) REFERENCES m5f_sous_categorie (idSousCat);
 
-ALTER TABLE m5f_sous_categorie 
+ALTER TABLE m5f_sous_categorie
 ADD FOREIGN KEY (idCat) REFERENCES m5f_categorie (idCat);
 
+ALTER TABLE m5f_contact
+ADD FOREIGN KEY (idUser) REFERENCES m5f_user (idUser);
 
 /* AFFECTION DES DONNEES DANS LA BDD */
 
