@@ -8,14 +8,13 @@ CREATE TABLE m5f_categorie
 
 CREATE TABLE m5f_document 
 (
-	idDoc INTEGER NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	idReference VARCHAR(32) NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	intituleDoc VARCHAR(255) NOT NULL,
 	date DATE NOT NULL,
 	description TEXT NOT NULL,
 	validee BIT NOT NULL,
 	exemple TEXT NOT NULL,
 	idSousCat INTEGER NOT NULL,
-	idReference VARCHAR(32) NOT NULL,
 	lienTelechargement VARCHAR(255) NOT NULL
 );
 
@@ -43,15 +42,15 @@ CREATE TABLE m5f_contact
 
 CREATE TABLE m5f_tmp
 (
-  idTmp INTEGER NOT NULL IDENTITY(1,1) PRIMARY KEY,
+  idReferenceTmp VARCHAR(32) NOT NULL IDENTITY(1,1) PRIMARY KEY,
   intituleTmp VARCHAR(255) NOT NULL,
   descriptionTmp TEXT NOT NULL,
   dateTmp DATE NOT NULL,
   valideeTmp BIT NOT NULL,
   exempleTmp TEXT NOT NULL,
   idSousCat INTEGER NOT NULL,
-  idReferenceTmp VARCHAR(32) NOT NULL,
-  lienTelechargementTmp VARCHAR(255) NOT NULL
+  lienTelechargementTmp VARCHAR(255) NOT NULL,
+  idMessage INTEGER NOT NULL
 );
 
 CREATE TABLE m5f_sous_categorie
@@ -89,7 +88,10 @@ ADD FOREIGN KEY (idUser) REFERENCES m5f_user (idUser);
 ALTER TABLE m5f_tmp
 ADD FOREIGN KEY (idSousCat) REFERENCES m5f_sous_categorie (idSousCat);
 
-ALTER TABLE m5f_sous_categorie 
+ALTER TABLE m5f_tmp
+ADD FOREIGN KEY (idMessage) REFERENCES m5f_message (idMessage);
+
+ALTER TABLE m5f_sous_categorie
 ADD FOREIGN KEY (idCat) REFERENCES m5f_categorie (idCat);
 
 
