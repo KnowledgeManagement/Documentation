@@ -47,6 +47,9 @@
 				<!--- FORMULAIRE DE CONNEXION --->
 				<form action="Defauts/Contenu/authentification.php" method="post">
 					<div class="form-inline panel panel-default">
+						<div class="panel-heading">
+							Authentification
+						</div>
 						<div class="panel-body">
 							<input type="text" name="identifiant" class="form-control" autofocus required placeholder="Identifiant" style="width:50%">
 							<?php

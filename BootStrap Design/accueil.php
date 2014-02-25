@@ -61,7 +61,8 @@
     				</div>
     				<form class="navbar-form navbar-left" role="search">
 						 <div class="form-group">
-				          <input type="text" class="form-control" placeholder="Rechercher..." name="rechercher">
+						 	<a href="#"><i class="glyphicon glyphicon-th-large"></i></a>
+				          	<input type="text" class="form-control" placeholder="Rechercher..." name="rechercher">
 				        </div>
 			        </form>
 				     <?php
